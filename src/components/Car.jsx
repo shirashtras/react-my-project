@@ -1,7 +1,7 @@
 import React from 'react'
 import CarMode from './CarMode'
 
-const Car = ({cars}) => {
+const Car = ({cars,speed, setSpeed,isDrive, setIsDrive}) => {
     return (
      <div>
       {cars.map((c) => (
@@ -10,7 +10,7 @@ const Car = ({cars}) => {
           <p>Color:{c.color}</p>
           <p>Year:{c.year}</p>
           <p>Price:{c.price}</p>
-           <CarMode/>
+           <CarMode speed={speed} setSpeed={setSpeed} isDrive={isDrive} setIsDrive={setIsDrive}/>
         </div>
         ))}
       

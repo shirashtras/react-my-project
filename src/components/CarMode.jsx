@@ -1,8 +1,6 @@
 import React, { use, useState } from 'react'
 
-const CarMode = () => {
-    const [speed,setSpeed]=useState(0)
-    const [isDrive,setIsDrive]=useState(false);
+const CarMode = ({speed, setSpeed, isDrive, setIsDrive }) => {
 
     const handleToggleMoving=()=>{
         if (isDrive) 
@@ -25,6 +23,9 @@ const CarMode = () => {
       {isDrive &&<input  type="number" value={speed}  onChange={handleSpeed} />}
       <button onClick={handleToggleMoving} > {isDrive?"Stopped Car":"Set Car Moving"}</button>
     </div>
+   
+    
+ 
   )
 }
 
