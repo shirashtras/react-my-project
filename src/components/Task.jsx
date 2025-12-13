@@ -4,25 +4,20 @@ import { useState } from 'react'
 import AllTask from './AllTask'
 
 const Task = () => {
-const {tasks,setTask}=useState([])
-const {isDisplayTask,setisDisplayTask}=useState(false)
-  return (
+const [tasks,setTask]=useState([])
+const [isDisplayTask,setisDisplayTask]=useState(false)
 
- 
+const handleClickButton=()=>{
+  setisDisplayTask(true)
+}
+  return (
     <div>
-      {isDisplayTask ? (
-        <FormInsertTask
-        setTask={setTask}
-        setisDisplayTask={setisDisplayTask}
-        />
-      ) : (
-        <>
-          <button onClick={() => setIsDisplayNewTaskForm(true)}>
-          Open Form
-          </button>
-          <AllTask tasks={tasks} setTask={setTask} />
-        </>
-      )}
+      {isDisplayTask ?<FormInsertTask setTask={setTask} setisDisplayTask={setisDisplayTask} /> : 
+         <div>
+          <button onClick={handleClickButton}> Open Form</button>
+          <AllTask tasks={tasks} setTask={setTask}/> 
+          </div> 
+        }
     </div>
   )
 }

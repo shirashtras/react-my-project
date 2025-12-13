@@ -1,39 +1,37 @@
-import React from 'react'
-import { use } from 'react'
 import { useState } from 'react'
-const FormInsertTask = ({setTask}) => {
-  const {headerTask,setHeaderTask}=useState("")
-  const {descriptionTask,setdescriptionTask}=useState("")
+import { v4 as uuidv4 } from 'uuid'
 
-  const handleChangeHeader=(e)=>{
-    setHeaderTask(e.target.value)
-  }
-  const handleChangeDescription=(e)=>{
-    setHeaderTask(e.target.value)
-  }
-  const handleCreateTask=(e)=>{
+const FormInsertTask = ({ setTask, setisDisplayTask }) => {
+
+  const [headerTask, setHeaderTask] = useState('')
+  const [descriptionTask, setDescriptionTask] = useState('')
+
+  const handleCreateTask = (e) => {
     e.preventDefault()
-    const newTask={id:uuidv4(),headerTask,descriptionTask,date:DateNow}
-   setTask(p=>[...p,newTask])
-   setHeaderTask("")
-   setdescriptionTask("")
-
+    const now = new Date()
+    const dateNow=now.toLocaleTimeString('he')
+    const newTask = {id: uuidv4(), headerTask,descriptionTask, date:dateNow,isCompleted: false}
+    setTask(prev => [...prev, newTask])
+    setHeaderTask('')
+    setDescriptionTask('')
+    setisDisplayTask(false)
   }
-
-  const now = new Date();
-  const DateNow = now.toLocaleTimeString('he'); 
+  const handleHeadertask=(e)=>{
+    setHeaderTask(e.target.value)
+  }
+ const handleDescriptionTask=(e)=>{
+    setDescriptionTask(e.target.value)
+  }
   return (
     <div>
-      <button onChange={handleInsertTask} >Add Task </button>
       <h2>Your Task</h2>
-      <input placeholder='enter your Header task' onBlur={handleChangeHeader}/>
-      <br/>
-      <input placeholder='enter your Description task' onBlur={handleChangeDescription}/>
-      <br/>
-      <button onClick={handleCreateTask}> Create Task</button>
+      <input placeholder="enter your Header task" onChange={handleHeadertask} />
+      <br />
+      <input placeholder="enter your Description task"  onChange={handleDescriptionTask} />
+      <br />
+      <button onClick={handleCreateTask}>Create Task</button>
     </div>
   )
 }
 
 export default FormInsertTask
-
